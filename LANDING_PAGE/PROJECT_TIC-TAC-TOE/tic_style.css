@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* background color */
+    --bg-primary-color: #203a43;
+    --bg-secondary-color: #b0413e;
+    --button-hover-color: #2c5364;
+    --bg-reset-color: #191913;
+    --heading-color: #00ffcc;
+    --reset-text-color: #ffffff;
+    --bg-button-color: #ffffc7;
+    --button-click-color: rgb(221, 221, 168);
+    --x-color: rgb(36, 207, 36);
+
+    /* border radius */
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 15px;
+
+}
+
+body {
+    background-color: var(--bg-primary-color);
+    text-align: center;
+}
+
+.container {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game {
+    height: 60vmin;
+    width: 60vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vmin;
+}
+
+h1 {
+    color: var(--heading-color);
+}
+
+.box {
+    height: 18vmin;
+    width: 18vmin;
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-size: 8vmin;
+    background-color: var(--bg-button-color);
+}
+
+.box:hover {
+    cursor: pointer;
+    background-color: var(--button-click-color);
+}
+
+.x-color {
+    color: var(--x-color);
+}
+
+.o-color {
+    color: var(--bg-secondary-color);
+}
+
+#resetBtn {
+    padding: 10px;
+    font-size: 20px;
+    background-color: var(--bg-reset-color);
+    color: var(--reset-text-color);
+    border-radius: var(--border-radius-md);
+    border: none;
+}
+
+#resetBtn:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}
+
+#newBtn {
+    padding: 10px;
+    font-size: 20px;
+    background-color: var(--bg-reset-color);
+    color: var(--reset-text-color);
+    border-radius: var(--border-radius-md);
+    border: none;
+}
+
+#newBtn:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}   
+
+#msg {
+    color: var(--bg-button-color);
+    font-size: 8vmin;
+}
+
+.msg-container {
+    height: 100vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hide {
+    display: none;
+}
+
+#startBtn {
+    padding: 10px;
+    font-size: 20px;
+    background-color: var(--bg-reset-color);
+    color: var(--reset-text-color);
+    border-radius: var(--border-radius-md);
+    border: none;
+    margin-top: 50px;
+}
+
+#startBtn:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}
+
+.start-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
