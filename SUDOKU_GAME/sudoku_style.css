@@ -1,0 +1,177 @@
+/* * {
+    box-sizing: border-box;
+} */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #203a43;
+}
+
+#sudoku {
+    width: 450px;
+    font-size: 50px;
+    border-radius: 8px;
+    background-color: #2c5364;
+    color: #ffffff;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#WCT {
+    height: 45px;
+    width: 450px;
+    font-size: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    gap: 40px;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#correctAttempt {
+    height: 40px;
+    width: 100px;
+    background-color: #1da68b;
+    border-radius: 10px;
+    align-items: center;
+}
+
+#wrongAttempt {
+    height: 40px;
+    width: 100px;
+    background-color: #1da68b;
+    border-radius: 10px;
+    align-items: center;
+}
+#totalAttempt {
+    height: 40px;
+    width: 220px;
+    background-color: #1da68b;
+    border-radius: 10px;
+    align-items: center;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    background-color: #297869;
+    border: 2px solid #ffffff;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 48px;
+    height: 48px;
+    border: 1px solid black;
+
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile:hover:not(.tile-start) {
+    background-color: #104e42;
+    cursor: pointer;
+}
+
+.tile:not(.tile-start) {
+    color: #ffffff;
+}
+
+#digits {
+    width: 450px;
+    height: 50px;
+    background-color: #2c799a;
+    color: #ffffff;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.number {
+    width: 44.7px;
+    height: 44px;
+    border: 2px solid black;
+    margin: 1px;
+
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number:hover {
+    background-color: #096e99;
+    color: black;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.number-selected {
+    background-color: #297869;
+    transform: scale(1.1);
+}
+
+.tile-start {
+    background-color: #00ffcc;
+}
+
+.horizontal-line {
+    border-bottom: 2px solid #ffffff;
+}
+
+.vertical-line {
+    border-right: 2px solid #ffffff;
+}
+
+#gameOverBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #203a43;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameOverContent {
+   background: #2c5364;
+   color: #ffffff;
+   padding: 30px;
+   border-radius: 10px;
+   text-align: center;
+}
+
+#gameOverContent button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#restartBtn {
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+#restartBtn:hover {
+    background-color: #136e5c;
+    color: #ffffff;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
