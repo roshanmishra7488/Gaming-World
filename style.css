@@ -5,15 +5,12 @@
     font-family: Arial, sans-serif;
 }
 
-/* Body */
 body {
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
 }
 
-/* Navbar */
 .navbar {
-    /* text-align: center; */
     padding: 15px;
     background: rgba(0, 0, 0, 0.7);
 }
@@ -23,7 +20,6 @@ body {
     font-size: 24px;
 }
 
-/* Hero Section */
 .hero {
     text-align: center;
     padding: 50px 20px;
@@ -39,7 +35,6 @@ body {
     opacity: 0.8;
 }
 
-/* Container */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -47,7 +42,6 @@ body {
     padding: 40px;
 }
 
-/* Card */
 .card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -56,41 +50,35 @@ body {
     transition: 0.3s;
 }
 
-/* Hover */
 .card:hover {
     transform: translateY(-10px) scale(1.05);
     background: rgba(0, 255, 204, 0.2);
-    /* box-shadow: 0 10px 25px rgba(0, 255, 204, 0.3); */
 }
 
-/* Image */
 .card img {
     width: 100%;
     height: 160px;
 
-    object-fit: contain;   /* 🔥 BEST for mixed images */
+    object-fit: contain;   
     
-    background: black;      /* dark background for empty space */
-    padding: 10px;         /* spacing around image */
+    background: black;     
+    padding: 10px;        
 
     border-radius: 10px;
     margin-bottom: 12px;
 }
 
-/* Title */
 .card h3 {
     font-size: 20px;
     margin-bottom: 8px;
 }
 
-/* Description */
 .card p {
     font-size: 14px;
     opacity: 0.8;
     margin-bottom: 15px;
 }
 
-/* Play Button (Anchor) */
 .card a {
     display: inline-block;
     text-decoration: none;
@@ -102,7 +90,6 @@ body {
     transition: 0.3s;
 }
 
-/* Button Hover */
 .card a:hover {
     background: white;
 }
@@ -111,18 +98,33 @@ a {
     width: 20vh;
 }
 
-/* Footer */
+#contact {
+    margin: 0 auto;
+    line-height: 24px;
+    background-color: rgba(0, 0, 0, 0.434);
+}
+
+.contact-line {
+    gap: 8px;
+    text-align: center;
+}
+
+#github {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#github:hover {
+    cursor: pointer;
+}
+
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(0, 0, 0, 0.7);
 }
 
-footer p {
-    margin: 5px 0;
-}
-
-footer span {
-    font-size: 14px;
-    opacity: 0.7;
+.copyRight {
+    margin-top: 50px;
+    font-size: 12px;
 }
