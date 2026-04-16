@@ -1,3 +1,11 @@
+
+let popSound = new Audio("music_ad/food.mp3");
+
+let sadSound = new Audio("music_ad/gameover.mp3");
+
+let gameOverCount = 0;
+let videoModal = document.getElementById("videoModal");
+let rewardVideo = document.getElementById("rewardVideo");
 let board = document.querySelector('.board');
 let startButton = document.querySelector(".btn-start")
 let modal = document.querySelector(".modal")
@@ -24,13 +32,15 @@ let rows = Math.floor(board.clientHeight / blockHeight);
 let intervalId = null;
 let timerIntervalId = null;
 
-let food = { x: Math.floor(Math.random() * rows), 
-    y: Math.floor(Math.random() * cols) }
+let food = {
+    x: Math.floor(Math.random() * rows),
+    y: Math.floor(Math.random() * cols)
+}
 
 let blocks = [];
-let snake = [ {
-    x: 1, y: 3 
-} ]
+let snake = [{
+    x: 1, y: 3
+}]
 
 let direction = 'down'
 
@@ -39,73 +49,90 @@ for (let row = 0; row < rows; row++) {
         const block = document.createElement('div');
         block.classList.add("block")
         board.appendChild(block);
-        blocks[ `${row}-${col}` ] = block
+        blocks[`${row}-${col}`] = block
     }
 }
 
-function render () {
+function render() {
     let head = null
 
-    blocks [ `${food.x}-${food.y}` ].classList.add("food")
+    blocks[`${food.x}-${food.y}`].classList.add("food")
 
     if (direction === "left") {
-        head = { x: snake[0].x, y: snake[0].y-1 }
+        head = { x: snake[0].x, y: snake[0].y - 1 }
     } else if (direction === "right") {
-        head = { x: snake[0].x, y: snake[0].y+1 }
+        head = { x: snake[0].x, y: snake[0].y + 1 }
     } else if (direction === "down") {
-        head = { x: snake[0].x+1, y: snake[0].y }
+        head = { x: snake[0].x + 1, y: snake[0].y }
     } else if (direction === "up") {
-        head = { x: snake[0].x-1, y: snake[0].y }
-    } 
+        head = { x: snake[0].x - 1, y: snake[0].y }
+    }
 
-    // wall collision logic
-    if(head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols){
+    // wall collision logic/ game over logic
+    if (head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
         clearInterval(intervalId)
 
-        modal.style.display = "flex"
-        startGameModal.style.display = "none"
-        gameOverModal.style.display =  "flex"
+        sadSound.currentTime = 0;
+        sadSound.play();
+
+        gameOverCount++;
+
+        if (gameOverCount % 3 === 0) {
+            modal.style.display = "none";
+            videoModal.style.display = "flex";
+            rewardVideo.play();
+        } else {
+            modal.style.display = "flex";
+            startGameModal.style.display = "none";
+            gameOverModal.style.display = "flex";
+        }
+
         return;
     }
 
     // food consume logic
-    if(head.x === food.x && head.y === food.y){
-        blocks [ `${food.x}-${food.y}` ].classList.remove("food")
-        food = { x: Math.floor(Math.random() * rows), 
-        y: Math.floor(Math.random() * cols) }
-        blocks [ `${food.x}-${food.y}` ].classList.add("food")
+    if (head.x === food.x && head.y === food.y) {
+
+        popSound.currentTime = 0;
+        popSound.play();
+        blocks[`${food.x}-${food.y}`].classList.remove("food")
+        food = {
+            x: Math.floor(Math.random() * rows),
+            y: Math.floor(Math.random() * cols)
+        }
+        blocks[`${food.x}-${food.y}`].classList.add("food")
         snake.unshift(head);
 
         score += 10
         scoreElement.innerText = score
 
-        if(score > highScore){
+        if (score > highScore) {
             highScore = score
             localStorage.setItem("highScore", highScore.toString())
         }
     }
 
     snake.forEach(segment => {
-        blocks[ `${segment.x}-${segment.y}` ].classList.remove("fill")
+        blocks[`${segment.x}-${segment.y}`].classList.remove("fill")
     })
 
     snake.unshift(head)
     snake.pop()
     snake.forEach(segment => {
-        blocks[ `${segment.x}-${segment.y}` ].classList.add("fill")
+        blocks[`${segment.x}-${segment.y}`].classList.add("fill")
     })
 }
 
 startButton.addEventListener("click", () => {
     modal.style.display = "none"
-    intervalId = setInterval(() => {render()}, 300)
+    intervalId = setInterval(() => { render() }, 300)
     timerIntervalId = setInterval(() => {
-        let [ min, sec ] = time.split("-").map(Number)
+        let [min, sec] = time.split("-").map(Number)
 
-        if(sec == 59) {
+        if (sec == 59) {
             min += 1
             sec = 0
-        }else {
+        } else {
             sec += 1
         }
         time = `${min}-${sec}`
@@ -117,9 +144,11 @@ restartButton.addEventListener("click", restartGame)
 
 function restartGame() {
 
-    blocks [ `${food.x}-${food.y}` ].classList.remove("food")
+    clearInterval(intervalId);
+
+    blocks[`${food.x}-${food.y}`].classList.remove("food")
     snake.forEach(segment => {
-        blocks[ `${segment.x}-${segment.y}` ].classList.remove("fill")
+        blocks[`${segment.x}-${segment.y}`].classList.remove("fill")
     })
     score = 0
     time = `00-00`
@@ -130,14 +159,16 @@ function restartGame() {
 
     modal.style.display = "none"
     direction = "down"
-    snake = [ { x: 1, y: 3 } ]
-    food = { x: Math.floor(Math.random() * rows), 
-    y: Math.floor(Math.random() * cols) }
-    intervalId = setInterval(() => {render()}, 300)
+    snake = [{ x: 1, y: 3 }]
+    food = {
+        x: Math.floor(Math.random() * rows),
+        y: Math.floor(Math.random() * cols)
+    }
+    intervalId = setInterval(() => { render() }, 300)
 }
 
 addEventListener("keydown", (event) => {
-    if(event.key == "ArrowUp"){
+    if (event.key == "ArrowUp") {
         direction = "up"
     } else if (event.key == "ArrowRight") {
         direction = "right"
@@ -147,3 +178,12 @@ addEventListener("keydown", (event) => {
         direction = "down"
     }
 })
+
+rewardVideo.addEventListener("ended", () => {
+    videoModal.style.display = "none";
+
+    // wapas game over screen
+    modal.style.display = "flex";
+    startGameModal.style.display = "none";
+    gameOverModal.style.display = "flex";
+});
