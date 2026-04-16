@@ -26,13 +26,22 @@ body {
 }
 
 .hero h1 {
-    font-size: 38px;
+    font-size: 40px;
     margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 18px;
+.sub-title {
+    font-size: 22px;
     opacity: 0.8;
+}
+
+.age-note {
+    margin-top: 20px;
+    padding: 8px 15px;
+    border: 1px solid #00ffcc;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 13px;
 }
 
 .container {
@@ -94,14 +103,13 @@ body {
     background: white;
 }
 
-a {
-    width: 20vh;
-}
-
 #contact {
-    margin: 0 auto;
+    width: 100%;
     line-height: 24px;
     background-color: rgba(0, 0, 0, 0.434);
+    padding-bottom: 15px;
+    padding-top: 5px;
+    border-top: 1px solid #ffffff;
 }
 
 .contact-line {
@@ -120,11 +128,12 @@ a {
 
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 0;
     background: rgba(0, 0, 0, 0.7);
 }
 
 .copyRight {
-    margin-top: 50px;
+    padding: 20px;
+    margin-top: 30px;
     font-size: 12px;
 }
