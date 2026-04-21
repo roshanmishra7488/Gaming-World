@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test</title>
+    <link rel="stylesheet" href="typing_style.css">
+</head>
+
+<body>
+    <div class="box">
+        <div class="topPart">
+            <div class="titlePart">
+                <h2>Typing Test....</h2>
+                <div class="sound">
+                    <span>key sound ON/OFF</span>
+                    <input type="checkbox" checked>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="typeContent">
+                <input type="text" id="typeValue">
+                <p>
+
+                </p>
+            </div>
+        </div>
+        <div class="bottomPart">
+            <p class="tLeft">Time-Left : 0</p>
+            <p class="error">Mistakes : 0</p>
+            <p class="wpm">WPM : 0</p>
+            <p class="cpm">CPM : 0</p>
+            <button>Try Again</button>
+        </div>
+        <div id="timeOverBox" class="timeOverBox">
+            <h2>⏰ Time Over!</h2>
+        </div>
+    </div>
+    <div id="AdModal" class="ad-modal">
+        <video id="AdVideo" width="400" controls>
+            <source src="amul_ad.mp4" type="video/mp4">
+        </video>
+    </div>
+</body>
+<script src="para_script.js"></script>
+<script src="typing_script.js"></script>
+</html>

@@ -1,82 +1,104 @@
-function makeBubble (){
-let clutter = "";
-for (let i = 0; i <= 191; i++) {
-    let randomNumber = Math.floor(Math.random() * 10 );
-    clutter += `<div class="bubble">${randomNumber}</div>`;
-};
-document.querySelector("#panelBottom").innerHTML = clutter;
+let gameOverCount = 0;
+let videoModal = document.getElementById("videoModal");
+let AdVideo = document.getElementById("AdVideo");
+
+function makeBubble() {
+    let clutter = "";
+    for (let i = 0; i <= 191; i++) {
+        let randomNumber = Math.floor(Math.random() * 10);
+        clutter += `<div class="bubble">${randomNumber}</div>`;
+    };
+    document.querySelector("#panelBottom").innerHTML = clutter;
 };
 
 let timer = 60;
 let timerInterval;
-function runTimer(){
-    timerInterval = setInterval(function(){
-        if(timer > 0){
+function runTimer() {
+    timerInterval = setInterval(function () {
+        if (timer > 0) {
             timer--;
-        document.querySelector("#timerValue").textContent = timer;
+            document.querySelector("#timerValue").textContent = timer;
         }
-        else{
+        else {
             clearInterval(timerInterval);
-            document.querySelector("#panelBottom").innerHTML = `
-            <div class="game-over">
-                <h2>Game Over</h2>
-                <button id="restartBtn">Restart Game</button>
-                </div>
-                `;
+
+            gameOverCount++;
+
+            if (gameOverCount % 3 === 0) {
+                videoModal.style.display = "flex";
+                AdVideo.currentTime = 0;
+                AdVideo.play();
+            } else {
+                document.querySelector("#panelBottom").innerHTML = `
+                        <div class="game-over">
+                        <h2>Game Over</h2>
+                        <button id="restartBtn">Restart Game</button>
+                        </div>
+                        `;
                 addRestartEvent();
+            }
         }
     }, 1000);
 }
 
 let hitNumber;
-function getNewHit (){
+function getNewHit() {
     hitNumber = Math.floor(Math.random() * 10);
     document.querySelector("#hitValue").textContent = hitNumber
 }
 
 let score = 0;
-function increaseScore (){
+function increaseScore() {
     score += 10;
     document.querySelector("#scoreValue").textContent = score;
 }
 
 let clickedNumber;
-document.querySelector("#panelBottom").addEventListener("click", function(details){
-    if(!details.target.classList.contains("bubble"))return;
+document.querySelector("#panelBottom").addEventListener("click", function (details) {
+    if (!details.target.classList.contains("bubble")) return;
     clickedNumber = Number(details.target.textContent);
-    if(clickedNumber === hitNumber){
+    if (clickedNumber === hitNumber) {
         increaseScore();
         makeBubble();
         getNewHit();
     } else {
         clearInterval(timerInterval);
         timer = 0;
-        document.querySelector("#timerValue").textContent = 0;
-        document.querySelector("#panelBottom").innerHTML = `
-        <div class="game-over">
-        <h2>Game Over</h2>
-        <button id="restartBtn">Restart Game</button>
-        </div>
-        `;
-        addRestartEvent();
+
+        gameOverCount++;
+
+        if (gameOverCount % 3 === 0) {
+            videoModal.style.display = "flex";
+            AdVideo.currentTime = 0;
+            AdVideo.play();
+        } else {
+            document.querySelector("#timerValue").textContent = 0;
+            document.querySelector("#panelBottom").innerHTML = `
+                    <div class="game-over">
+                    <h2>Game Over</h2>
+                    <button id="restartBtn">Restart Game</button>
+                    </div>
+                    `;
+            addRestartEvent();
+        }
     }
 })
 
-function addRestartEvent (){
-    document.querySelector("#restartBtn").addEventListener("click", function (){
-    clearInterval(timerInterval);
-    timer = 60;
-    score = 0;
-    document.querySelector("#timerValue").textContent = timer;
-    document.querySelector("#scoreValue").textContent = score;
-    getNewHit();
-    makeBubble();
-    runTimer();
+function addRestartEvent() {
+    document.querySelector("#restartBtn").addEventListener("click", function () {
+        clearInterval(timerInterval);
+        timer = 60;
+        score = 0;
+        document.querySelector("#timerValue").textContent = timer;
+        document.querySelector("#scoreValue").textContent = score;
+        getNewHit();
+        makeBubble();
+        runTimer();
     });
-    
+
 }
 
-function startGame(){
+function startGame() {
     timer = 60;
     score = 0;
     document.querySelector("#timerValue").textContent = timer;
@@ -86,8 +108,8 @@ function startGame(){
     runTimer();
 }
 
-function addStartEvent(){
-    document.querySelector("#startBtn").addEventListener("click", function(){
+function addStartEvent() {
+    document.querySelector("#startBtn").addEventListener("click", function () {
         startGame();
     });
 }
@@ -95,3 +117,15 @@ function addStartEvent(){
 
 
 addStartEvent();
+
+AdVideo.addEventListener("ended", () => {
+    videoModal.style.display = "none";
+
+    document.querySelector("#panelBottom").innerHTML = `
+    <div class="game-over">
+        <h2>Game Over</h2>
+        <button id="restartBtn">Restart Game</button>
+    </div>`;
+
+    addRestartEvent();
+});

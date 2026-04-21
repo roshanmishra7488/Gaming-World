@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #203a43;
+    place-items: center;
+    display: grid;
+}
+
+.box {
+    width: 70%;
+    height: auto;
+    background-color: #00ffcc;
+    padding: 20px;
+    position: relative;
+}
+
+.box .topPart {
+    width: 100%;
+    position: relative;
+}
+
+.topPart .titlePart {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titlePart h2 {
+    font-size: 2rem;
+    /* opacity: .6; */
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.titlePart .sound {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titlePart .sound span {
+    margin-right: 10px;
+    opacity: .7;
+}
+
+input[type="checkbox"] {
+    width: 52px;
+    height: 30px;
+    appearance: none;
+    background-color: #203a43;
+    border-radius: 40px;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #2c5364;
+    transition-duration: 300ms;
+}
+
+input[type="checkbox"]::before {
+    position: absolute;
+    content: "";
+    width: 30px;
+    top: 0;
+    height: 30px;
+    left: 22px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition-duration: 300ms;
+}
+
+input[type="checkbox"]:checked::before {
+    left: 0;
+}
+
+.typeContent input {
+    position: absolute;
+    z-index: -99;
+    opacity: 0;
+}
+
+.typeContent p {
+    font-size: 1rem;
+    word-spacing: 2px;
+    line-height: 1.2;
+    text-align: justify;
+}
+
+.bottomPart {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.bottomPart button {
+    padding: 6px 13px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #203a43;
+    color: #ffffff;
+    border-radius: 4px;
+    transition-duration: 150ms;
+}
+
+.bottomPart button:hover {
+    transform: scale(0.9);
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
+.active {
+    opacity: 0.6;
+    position: relative;
+}
+
+.active::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    width: 2px;
+    opacity: 0;
+    height: 100%;
+    background-color: red;
+    animation: blink .5s linear infinite;
+}
+
+.timeOverBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #203a43;
+    color: white;
+    padding: 20px;
+    display: none;
+    z-index: 1000;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.ad-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 1;
+    }
+}
