@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Game</title>
+    <link rel="stylesheet" href="sudoku_style.css">
+    
+</head>
+
+<body>
+    <div id="sudoku">Sudoku</div>
+
+    <div id="WCT">
+        <div id="correctAttempt">
+            <h2>Correct: <span id="correct">0</span></h2>
+        </div>
+
+        <div id="wrongAttempt">
+            <h2>Wrong: <span id="wrong">0</span></h2>
+        </div>
+
+        <div id="totalAttempt">
+            <h2>Total Attempts Left: <span id="total">50</span></h2>
+        </div>
+
+    </div>
+    <br>
+    <div id="board"></div>
+    <br>
+    <div id="digits"></div>
+
+    <div id="gameOverBox">
+        <div id="gameOverContent">
+            <h1>Game Over</h1>
+            <button id="restartBtn">Restart</button>
+        </div>
+    </div>
+</body>
+<script src="sudoku_script.js"></script>
+</html>
